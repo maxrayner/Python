@@ -6,7 +6,8 @@ This program's task it to ask the user for a password and check it against secur
 
 ## Research
 
-I conducted research into password security improvements. A secure password length should consist of 15+ characters long to avoid brute-force attacks. In this program, each password length minimum is 16 characters long to provide maximum security.
+I conducted research into password security improvements. A secure password length should consist of 15+ characters long to avoid brute-force attacks. In this program, each password length minimum is 16 characters long to provide maximum security. Password security also stems from a combination of upper and lower case characters along with numbers and symbols as it introduces more possible combinations therefore increasing the time for a possible brute force attack/guessing.
+
 ## Features
 
 * Nothing yet
