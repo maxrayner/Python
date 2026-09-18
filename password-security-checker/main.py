@@ -18,8 +18,10 @@ def checkLength(password):
         return "Medium", "X", 1
     elif length < 16: 
         return "Strong", "✓", 2
-    else:
+    elif length < 20:
         return "Very Strong", "✓", 3
+    else:
+        return "Extremely Strong", "✓", 4
 
 
 def checkUpper(password):
@@ -50,13 +52,14 @@ def checkNumbers(password):
 
 def checkCommon(password,FILENAME):
     try:
-        with open(FILENAME) as f:
-            for lines in f:
-                if password == lines.strip():
+        with open(FILENAME,encoding="UTF-8") as f:
+            for line in f:
+                if password == line.strip():
                     return "Yes", "X"
         return "No", "✓" 
-    except:
+    except FileNotFoundError:
         print("ERROR: File not found")
+        return "FNF", "FNF"
 
 def mainOutput():
     print(f"{' PASSWORD SECURITY CHECKER ':=^45}")
@@ -70,10 +73,12 @@ def mainOutput():
     correctNumber, numberMarker = checkNumbers(password)
     correctCommon, commonMarker = checkCommon(password, FILENAME)
 
-    overallList = [upperMarker,lowerMarker,specialMarker,numberMarker,commonMarker]
+    overallList = [upperMarker,lowerMarker,numberMarker,commonMarker]
     for field in overallList:
         if field == "✓":
             overallScore += 1
+    if specialMarker == "✓":
+        overallScore += 2
 
 
     print(f" \nPassword Analysis\n{"-"*24}")
