@@ -3,21 +3,39 @@
 from random import randint
 import string
 
-split = "-"
-characters = string.ascii_letters + string.digits
 
-splits = 5
-length = 8
 
-fullword = ""
-count = 0
+def display():
 
-for i in range(splits):
-    for j in range(length):
+    print(f"{' Password Generator ':=^45}\nEnter yes/no/number if required")
+
+
+def getInput():
+
+    length = int(input("Enter desired length: "))
+    numbers = input("Do you want numbers? (y/n): ").lower() == "y"
+    symbols = input("Do you want symbols? (y/n): ").lower() == "y"
+    letters = input("Do you want letters? (y/n): ").lower() == "y"
+    characters = ""
+
+    if numbers:
+        characters += string.digits
+    if symbols:
+        characters += "!@#$%^&*"
+    if letters:
+        characters += string.ascii_letters
+
+    return length, characters
+
+def main():
+    display()
+    length, characters = getInput()
+    password = ""
+    for _ in range(length):
         num = randint(0,len(characters)-1)
-        fullword += characters[num]
-    if count != splits-1:
-        fullword += str(split)
-        count += 1
+        password += characters[num]
 
-print(fullword)
+    print(password)
+
+main()
+
