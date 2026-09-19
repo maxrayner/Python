@@ -33,3 +33,7 @@ passwordgen.py:
 * Modules
 * Loops
 * String manipulation
+
+## To improve / To do
+
+* Need to ensure that if the user asks for a number/character/symbol, at least one is included 

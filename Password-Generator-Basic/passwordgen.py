@@ -11,21 +11,32 @@ def display():
 
 
 def getInput():
+    while True:
+        try:
+            length = int(input("Enter desired length: "))
+            if length > 0:
+                break
+            print("ERROR: Password cannot be less than 1 character long")
+        except ValueError:
+            print("ERROR: Not an integer")
 
-    length = int(input("Enter desired length: "))
-    numbers = input("Do you want numbers? (y/n): ").lower() == "y"
-    symbols = input("Do you want symbols? (y/n): ").lower() == "y"
-    letters = input("Do you want letters? (y/n): ").lower() == "y"
-    characters = ""
+    while True:
+        characters = "" 
+        numbers = input("Do you want numbers? (y/n): ").lower() == "y"
+        symbols = input("Do you want symbols? (y/n): ").lower() == "y"
+        letters = input("Do you want letters? (y/n): ").lower() == "y"
+        
+        if numbers:
+            characters += string.digits
+        if symbols:
+            characters += "!@#$%^&*"
+        if letters:
+            characters += string.ascii_letters
 
-    if numbers:
-        characters += string.digits
-    if symbols:
-        characters += "!@#$%^&*"
-    if letters:
-        characters += string.ascii_letters
-
-    return length, characters
+        if not characters:
+            print("ERROR: Must select at least one character type")
+        else:
+            return length, characters
 
 def main():
     display()
