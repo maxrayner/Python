@@ -7,11 +7,11 @@ from random import randint
 class Boxer:
     # constructor and attributes
     def __init__(self,name,power,defence,health=100,stamina=100):
-        self.__name = name
-        self.__power = power
-        self.__defence = defence
-        self.__health = health
-        self.__stamina = stamina
+        self.__name = name 
+        self.__power = power # multiplier of damage (power//50)
+        self.__defence = defence # increases chance of defence 
+        self.__health = health # overall starting health
+        self.__stamina = stamina # overall starting stamina
 
     # getter and setter methods
     def getName(self):
@@ -37,7 +37,9 @@ class Boxer:
     
     # main methods
     def punch(self,attack,opponent):
-        pass
+        damage = attack.getDamage()
+        stamina = attack.getStamina()
+        
 
     def defend(self):
         pass
@@ -62,12 +64,12 @@ class Defend:
 
 
 # Options of attacking (add overhands, body/head later)
-jab = Attack(5,1)
-straight = Attack()
-leadHook = Attack()
-rearHook = Attack()
-leadUppercut = Attack()
-rearUppercut = Attack()
+jab = Attack(3,1)
+straight = Attack(9,4)
+leadHook = Attack(15,7)
+rearHook = Attack(20,8)
+leadUppercut = Attack(18,6)
+rearUppercut = Attack(26,7)
 
 
 # Options of defending
@@ -79,3 +81,24 @@ weaving = Defend()
 footwork = Defend()
 blocking = Defend()
 clinching = Defend()
+
+
+# main game function
+def getIntInput(message):
+    return int(input(message))
+
+def getInput(message):
+    return input(message)
+
+def main():
+    print("Boxing Simulator\nBelow you can customise your character")
+    userBoxer = Boxer(getInput("Enter name: "),getIntInput("Enter power: "),getIntInput("Enter defence: "),getIntInput("Enter health: "),getIntInput("Enter stamina: "))
+    if getIntInput("Do you want to play against a machine (1) or a friend (2): ") == 1:
+        machineBoxer = Boxer(getInput("Enter opponents name: "),randint(50,100),randint(50,100))
+
+    
+
+
+
+if __name__ == "__main__":
+    main()
